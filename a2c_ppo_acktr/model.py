@@ -507,8 +507,6 @@ class CNNBase(NNBase):
         labels = (labels.unsqueeze(0) == labels.unsqueeze(1)).float() #[256,256]
         labels = labels.to(self.device)
 
-        features = F.normalize(features, dim=1)     #dim=1代表按行归一化
-
         similarity_matrix = torch.matmul(features, features.T)
         # assert similarity_matrix.shape == (
         #     self.args.n_views * self.args.batch_size, self.args.n_views * self.args.batch_size)
