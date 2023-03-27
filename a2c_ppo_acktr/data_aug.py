@@ -41,7 +41,7 @@ class GaussianBlur(object):
 
 def get_simclr_pipeline_transform(size):
     """Return a set of data augmentation transformations as described in the SimCLR paper."""
-    color_jitter = transforms.ColorJitter()   #明亮程度、对比度、饱和色调度、色调偏移程度
+    color_jitter = transforms.ColorJitter(brightness=0.8, contrast=0, saturation=0, hue=0.8)   #明亮程度、对比度、饱和色调度、色调偏移程度
     data_transforms = transforms.Compose([transforms.RandomResizedCrop(size=(size, size)),              #将PIL图像裁剪成任意大小和纵横比
                                           transforms.RandomHorizontalFlip(),                        #以0.5的概率水平翻转给定的PIL图像
                                           transforms.RandomApply([color_jitter], p=0.8),
