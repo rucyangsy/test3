@@ -2,7 +2,7 @@ import numpy as np
 
 import torch
 from torchvision import transforms
-from a2c_ppo_acktr.data_aug import get_simclr_pipeline_transform
+from a2c_ppo_acktr.data_aug import get_simclr_pipeline_transform, random_crop
 from torch.utils.data.sampler import BatchSampler, SubsetRandomSampler
 
 

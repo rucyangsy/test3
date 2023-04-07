@@ -34,8 +34,8 @@ class A2C_ACKTR():
         if self.train_selfsup_attention:
             self.selfsup_attention_optimizer = optim.Adam(actor_critic.base.selfsup_attention.parameters(),
                                                           0.001)
-            self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self.selfsup_attention_optimizer, T_max=400, eta_min=0,
-                                                           last_epoch=-1)
+            '''self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self.selfsup_attention_optimizer, T_max=400, eta_min=0,
+                                                           last_epoch=-1)'''
 
     def update(self, rollouts):
         obs_shape = rollouts.obs.size()[2:]
@@ -106,7 +106,7 @@ class A2C_ACKTR():
         nn.utils.clip_grad_norm_(self.actor_critic.base.selfsup_attention.parameters(),
                                  self.max_grad_norm)
         self.selfsup_attention_optimizer.step()
-        self.scheduler.step()
+        #self.scheduler.step()
 
         return loss.item(), image_b_keypoints_maps
 
